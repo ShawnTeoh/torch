@@ -139,9 +139,11 @@ function torch_native_pagenavi($echo,$wp_query){
 		 $slideContent .= '<div class="item '.$active.'">';
          $slideContent .= '<img src="'.esc_url($image).'" alt="" />';
          $slideContent .= '<div class="carousel-caption">';
+		 if($text != "") {
 		 $slideContent .= '<div class="caption-text">';
 		 $slideContent .= wp_kses( $text, $allowedposttags  );
 		 $slideContent .= '</div>';
+		 }
 		 if($link != "")
 		 $slideContent .= '<a href="'.esc_url($link).'"><button>'.esc_html($btn_text).'</button></a>';
 		 $slideContent .= '</div>';

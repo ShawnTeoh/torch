@@ -795,7 +795,6 @@ section[class^="homepage-section-"] {
 .homepage-slider .carousel-indicators li.active {
 	border-color: #19cbcf;
 	background-color: transparent;
-	margin: 3px;
 }
 
 .homepage-slider .carousel-indicators li span {
