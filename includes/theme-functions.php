@@ -185,6 +185,163 @@ function torch_native_pagenavi($echo,$wp_query){
 add_action( 'optionsframework_sidebar','torch_options_panel_sidebar' );
 
 /**
+ * Torch widget area generator
+ */
+
+function torch_widget_area_generator($args = array(),$echo = true){
+	
+	$column            = isset($_POST['column'])?$_POST['column']:1;
+	$num               = isset($_POST['num'])?$_POST['num']:0;
+	$areaname          = isset($_POST['areaname'])?$_POST['areaname']:0;
+	$column_items      = array();
+	for($i=0; $i<$column; $i++){
+		$column_items[] = 12/$column; 
+		}
+	$defaults = array("areaname" => $areaname,
+							 "color" => '',
+							 "image" => '',
+							 "repeat" => '',
+							 "position" => '',
+							 "attachment" => '',
+							 "layout" => '',
+							 "column" => $column,
+							 "columns" => $column_items,
+							 "num"     => $num,
+							 "padding" => 50
+							 );
+
+	$args = wp_parse_args( $args, $defaults );
+	$sanitize_areaname = sanitize_title($args['areaname']);
+
+	       $image_show = $args['image']==''?'':'<img src="'.$args['image'].'"><a class="remove-image">'.__("Remove","torch").'</a>';
+		   if($args['image']==''){
+			   $button = '<input type="button" value="Upload" class="upload-button button" id="upload-list-item-image-'.$args['num'].'">';
+		   }else{
+			   $button = '<input type="button" value="Remove" class="remove-file  button" id="upload-list-item-image-'.$args['num'].'">';
+			   }
+		   
+		   
+	// Background Color
+	            $output  = '<div class="list-item ">';
+				$output .= '<div class="section-widget-area-name"><span class="widget-area-name">'.$args['areaname'].'</span><span><a href="javascript:;" class="edit-section">'.__("Edit","torch").'</a> | <a href="javascript:;" data-href="javascript:;" data-toggle="confirmation" class="remove-section ">'.__("Remove","torch").'</a></span></div>';
+				$output .= '<input type="hidden" name="widget-area[section-widget-area-name][]" class="section-widget-area-name-item" id="section-widget-area-name-'.$args['num'].'" value="'.$args['areaname'].'" />';
+				$output .= '<input type="hidden" class="section-widget-sanitize-areaname" value="'.$sanitize_areaname.'" />';
+				
+				$output .= '<div class="section-widget-area-wrapper">';
+				$output .= '<div class="section section-color section-widget-area-background" id="section-widget-area-background-'.$args['num'].'"><label>'. __("Background","torch").':</label>
+  <div class="wp-picker-container"><span class="wp-picker-input-wrap">
+    <input type="text" value="'.$args['color'].'" class="of-color of-background-color wp-color-picker" id="list-item-color-'.$args['num'].'"  name="widget-area[list-item-color][]" style="display: none;">
+    <input type="button" class="button button-small hidden wp-picker-clear" value="Clear">
+    </span>
+    <div class="wp-picker-holder">
+      <div class="iris-picker iris-mozilla iris-border" style="display: none; width: 255px; height: 202.125px; padding-bottom: 23.2209px;">
+        <div class="iris-picker-inner">
+          <div class="iris-square" style="width: 182.125px; height: 182.125px;"><a href="#" class="iris-square-value ui-draggable" style="left: 0px; top: 182.133px;"><span class="iris-square-handle ui-slider-handle"></span></a>
+            <div class="iris-square-inner iris-square-horiz" style="background-image: -moz-linear-gradient(left center , rgb(255, 255, 255), rgb(255, 255, 255), rgb(255, 255, 255), rgb(255, 255, 255), rgb(255, 255, 255), rgb(255, 255, 255), rgb(255, 255, 255), rgb(255, 255, 255), rgb(255, 255, 255), rgb(255, 255, 255), rgb(255, 255, 255), rgb(255, 255, 255), rgb(255, 255, 255));"></div>
+            <div class="iris-square-inner iris-square-vert" style="background-image: -moz-linear-gradient(center top , transparent, rgb(0, 0, 0));"></div>
+          </div>
+          <div class="iris-slider iris-strip" style="width: 28.2px; height: 205.346px; background-image: -moz-linear-gradient(center top , rgb(0, 0, 0), rgb(0, 0, 0));">
+            <div class="iris-slider-offset ui-slider ui-slider-vertical ui-widget ui-widget-content ui-corner-all" aria-disabled="false"><a href="#" class="ui-slider-handle ui-state-default ui-corner-all" style="bottom: 0%;"></a></div>
+          </div>
+        </div>
+        <div class="iris-palette-container"><a tabindex="0" class="iris-palette" style="background-color: rgb(0, 0, 0); width: 19.5784px; height: 19.5784px; margin-left: 0px;"></a><a tabindex="0" class="iris-palette" style="background-color: rgb(255, 255, 255); width: 19.5784px; height: 19.5784px; margin-left: 3.6425px;"></a><a tabindex="0" class="iris-palette" style="background-color: rgb(221, 51, 51); width: 19.5784px; height: 19.5784px; margin-left: 3.6425px;"></a><a tabindex="0" class="iris-palette" style="background-color: rgb(221, 153, 51); width: 19.5784px; height: 19.5784px; margin-left: 3.6425px;"></a><a tabindex="0" class="iris-palette" style="background-color: rgb(238, 238, 34); width: 19.5784px; height: 19.5784px; margin-left: 3.6425px;"></a><a tabindex="0" class="iris-palette" style="background-color: rgb(129, 215, 66); width: 19.5784px; height: 19.5784px; margin-left: 3.6425px;"></a><a tabindex="0" class="iris-palette" style="background-color: rgb(30, 115, 190); width: 19.5784px; height: 19.5784px; margin-left: 3.6425px;"></a><a tabindex="0" class="iris-palette" style="background-color: rgb(130, 36, 227); width: 19.5784px; height: 19.5784px; margin-left: 3.6425px;"></a></div>
+      </div>
+    </div>
+  </div>
+  <input type="text" placeholder="'. __("No file chosen","torch").'" value="'.$args['image'].'" name="widget-area[list-item-image][]" class="upload" id="list-item-image-'.$args['num'].'">
+  '.$button.'
+  <div id="list-item-image-'.$args['num'].'-image" class="screenshot">'.$image_show.'</div>
+  <div class="of-background-properties">
+    <select id="list-item-repeat-'.$args['num'].'" name="widget-area[list-item-repeat][]" class="of-background of-background-repeat">
+      <option '.($args['repeat'] == 'no-repeat'?'selected="selected"':'').' value="no-repeat">No Repeat</option>
+      <option '.($args['repeat'] == 'repeat-x'?'selected="selected"':'').' value="repeat-x">Repeat Horizontally</option>
+      <option '.($args['repeat'] == 'repeat-y'?'selected="selected"':'').' value="repeat-y">Repeat Vertically</option>
+      <option '.($args['repeat'] == 'repeat'?'selected="selected"':'').' value="repeat">Repeat All</option>
+    </select>
+    <select id="list-item-position-'.$args['num'].'" name="widget-area[list-item-position][]" class="of-background of-background-position">
+      <option '.($args['position'] == 'top left'?'selected="selected"':'').' value="top left">Top Left</option>
+      <option '.($args['position'] == 'top center'?'selected="selected"':'').' value="top center">Top Center</option>
+      <option '.($args['position'] == 'top right'?'selected="selected"':'').' value="top right">Top Right</option>
+      <option '.($args['position'] == 'center left'?'selected="selected"':'').' value="center left">Middle Left</option>
+      <option '.($args['position'] == 'center center'?'selected="selected"':'').' value="center center">Middle Center</option>
+      <option '.($args['position'] == 'center right'?'selected="selected"':'').' value="center right">Middle Right</option>
+      <option '.($args['position'] == 'bottom left'?'selected="selected"':'').' value="bottom left">Bottom Left</option>
+      <option '.($args['position'] == 'bottom center'?'selected="selected"':'').' value="bottom center">Bottom Center</option>
+      <option '.($args['position'] == 'bottom right'?'selected="selected"':'').' value="bottom right">Bottom Right</option>
+    </select>
+    <select id="list-item-attachment-'.$args['num'].'" name="widget-area[list-item-attachment][]" class="of-background of-background-attachment">
+      <option  '.($args['attachment'] == 'scroll'?'selected="selected"':'').'value="scroll">Scroll Normally</option>
+      <option '.($args['attachment'] == 'fixed'?'selected="selected"':'').' value="fixed">Fixed in Place</option>
+    </select>
+  </div>
+</div>';
+
+				
+				/////widget secton layout
+		$output .= '<div id="section-widget-area-layout-'.$args['num'].'" class="section section-layout">';
+		$output .= '<label> '.__("Layout","torch").' :</label><select name="widget-area[widget-area-layout][]" id="widget-area-layout-'.$args['num'].'">
+			    	<option '.($args['layout'] == 'boxed'?'selected="selected"':'').' value="boxed">'.__("boxed","torch").'</option>
+				    <option '.($args['layout'] == 'full'?'selected="selected"':'').' value="full">'.__("full width","torch").'</option></select>';
+				
+		$output .= '</div>';
+		
+		$output .= '<div id="section-widget-area-padding-'.$args['num'].'" class="section section-padding">';
+		$output .= '<label> '.__("Padding top & bottom","torch").' :</label>';
+		$output .= '<input style=" width:50%;" type="text" value="'.$args['padding'].'" name="widget-area[widget-area-padding][]" id="widget-area-padding-'.$args['num'].'"> px';
+		$output .= '</div>';
+		
+				/////widget secton column
+		$output .= '<div id="section-widget-area-column-'.$args['num'].'" class="section section-column">';
+		$output .= '<label> '.__("Column","torch").' :</label><select class="widget-area-column" name="widget-area[widget-area-column][]" id="widget-area-column-'.$args['num'].'">
+			        <option value="1">'.__("choose column","torch").'</option>';
+					for($j=1;$j<=4;$j++){
+						$selected   = "";
+						$column_n   = __("columns","torch");
+						if($j == $args['column']){$selected = " selected='selected' ";}
+						if($j == 1){$column_n = __("column","torch");}
+						
+			    	    $output .= '<option value="'.$j.'" '.$selected.'>'.$j.' '.$column_n.'</option>';
+				   
+					}
+					
+		$output .= '</select>';
+				/////widget secton column items
+		$output .= '<div class="widget-secton-column">';
+				if(count($args['columns']) > 1){
+					$j = 1 ;
+					foreach($args['columns'] as $c){
+						
+			        $output .= '<label> '.sprintf(__("Column %s width","torch"),$j).' :</label><select class="widget-area-column-item" name="widget-area[widget-area-column-item]['.$sanitize_areaname.'][]" id="widget-area-column-item-'.$j.'">';
+			        
+					for($k=1;$k<=12;$k++){
+					$selected   = "";
+					if($c == $k){$selected = ' selected="selected" ';}
+			    	$output .= '<option value="'.$k.'" '.$selected.'>'.$k.'/12</option>';
+				   
+					}
+					
+		$output .= '</select>';
+		$j++;
+					  }
+					}
+		$output .= '</div>';
+				/////
+		$output .= '</div>';
+				//				
+		$output .= '</div>';
+		$output .= '</div>';
+				if($echo == true){
+				    echo $output ;
+				    exit(0);
+				}else{
+					return $output ;
+					}
+	
+	}
+    add_action('wp_ajax_torch_widget_area_generator', 'torch_widget_area_generator');
+	add_action('wp_ajax_nopriv_torch_widget_area_generator', 'torch_widget_area_generator');
+
+/**
  * torch admin sidebar
  */
 function torch_options_panel_sidebar() { ?>

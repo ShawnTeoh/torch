@@ -413,6 +413,73 @@ class Options_Framework_Interface {
 					$output .= '<div class="group_title' . $class . '"></div>';			
 				break;
 				
+				
+			case "widget-area":
+			
+			$list_item = get_option('_torch_home_widget_area');
+			
+			
+	   if($list_item !="" || $val !=""){
+		if($list_item == "") $list_item = $val;
+		$list_array = json_decode($list_item,true);
+		
+		$list_item_str = '';		
+   if(isset($list_array['section-widget-area-name']) && is_array($list_array['section-widget-area-name']) ){
+	  
+	   $num = count($list_array['section-widget-area-name']);
+	   for($i=0; $i<$num; $i++ ){
+		   
+	$areaname          = isset($list_array['section-widget-area-name'][$i])?$list_array['section-widget-area-name'][$i]:"";
+	$sanitize_areaname = sanitize_title($areaname);
+	$color             = isset($list_array['list-item-color'][$i])?$list_array['list-item-color'][$i]:"";
+	$image             = isset($list_array['list-item-image'][$i])?$list_array['list-item-image'][$i]:"";
+	$repeat            = isset($list_array['list-item-repeat'][$i])?$list_array['list-item-repeat'][$i]:"";
+	$position          = isset($list_array['list-item-position'][$i])?$list_array['list-item-position'][$i]:"";
+	$attachment        = isset($list_array['list-item-attachment'][$i])?$list_array['list-item-attachment'][$i]:"";
+	$layout            = isset($list_array['widget-area-layout'][$i])?$list_array['widget-area-layout'][$i]:"";
+	$padding           = isset($list_array['widget-area-padding'][$i])?$list_array['widget-area-padding'][$i]:"";
+	$column            = isset($list_array['widget-area-column'][$i])?$list_array['widget-area-column'][$i]:"";
+	$columns           = isset($list_array['widget-area-column-item'][$sanitize_areaname ])?$list_array['widget-area-column-item'][$sanitize_areaname ]:"";
+	
+	
+	$list_item_array = array("areaname" => $areaname,
+							 "sanitize_areaname" => $sanitize_areaname,
+							 "color" => $color,
+							 "image" => $image,
+							 "repeat" => $repeat,
+							 "position" => $position,
+							 "attachment" => $attachment,
+							 "layout" => $layout,
+							 "column" => $column,
+							 "columns" => $columns,
+							 "num"     => $i,
+							 "padding" => $padding
+							 );
+    $list_item_str .= torch_widget_area_generator($list_item_array,false);
+
+		
+
+		  
+		   }
+	   }
+	}
+	
+               $output  .= '<div id="section-widget" class="">
+			   <select name="widget_layout" id="widget_layout"><option value="1">'.__("choose column","torch").'</option>
+			    	<option value="1">'.__("1 column","torch").'</option>
+				    <option value="2">'.__("2 columns","torch").'</option>
+					<option value="3">'.__("3 columns","torch").'</option>
+					<option value="4">'.__("4 columns","torch").'</option>
+				</select>
+           <input type="text" id="list-item-val" size="20" name="list-item-val" value="" placeholder="'.__("Widget Area Name","torch").'" />';
+
+				
+		   
+		//
+                 $output  .= '<p style="display:block;clear: both;height:30px;"><a href="javascript:;" style="float:left;margin-right:20px;" class="button-primary" id="addItem">'.__("Add Item","torch").'</a> <span id="list-item-notice" style=" color:red;"></span></p></div>';
+	
+			     $output  .= '<div id="list-widget-areas">'. $list_item_str.'</div>';			
+			break;
 			}
 
 			if ( ( $value['type'] != "heading" ) && ( $value['type'] != "info" ) ) {

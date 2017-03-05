@@ -88,6 +88,12 @@ function optionsframework_options() {
 		'std' => '0',
 		'type' => 'checkbox');
 		
+		$options[] = array(
+		'name' => __('Home Page Sections', 'torch'),
+		'id' => 'home_page_sections',
+		'std' => '{"section-widget-area-name":["Home Page Section One","Home Page Section Two","Home Page Section Three","Home Page Section Four"],"list-item-color":["","#eee","",""],"list-item-image":["","","",""],"list-item-repeat":["","","",""],"list-item-position":["","","",""],"list-item-attachment":["","","",""],"widget-area-padding":["50","50","50","50"],"widget-area-layout":["boxed","boxed","boxed","boxed"],"widget-area-column":["1","1","2","1"],"widget-area-column-item":{"home-page-section-one":["12"],"home-page-section-two":["12"],"home-page-section-three":["6","6"],"home-page-section-four":["12"]}}',
+		'type' => 'widget-area');
+		
 		 $options[] = array(
 		'name' => __('NOTE:', 'torch'),
 		'desc' => sprintf(__('All sections in the homepage are widgets, so, go to Appearance-><a href="%s">Widgets</a> to set the sections content.', 'torch'),admin_url("widgets.php")),

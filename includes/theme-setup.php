@@ -35,7 +35,11 @@ function torch_setup(){
 	add_image_size( 'service', 128, 128 , true);
 	if ( !isset( $content_width ) ) $content_width = 1170;
 	
-	
+	if(!get_option( '_torch_home_widget_area' )){
+		$sections_json = '{"section-widget-area-name":["Home Page Section One","Home Page Section Two","Home Page Section Three","Home Page Section Four"],"list-item-color":["","#eee","",""],"list-item-image":["","","",""],"list-item-repeat":["","","",""],"list-item-position":["","","",""],"list-item-attachment":["","","",""],"widget-area-padding":["50","50","50","50"],"widget-area-layout":["boxed","boxed","boxed","boxed"],"widget-area-column":["1","1","2","1"],"widget-area-column-item":{"home-page-section-one":["12"],"home-page-section-two":["12"],"home-page-section-three":["6","6"],"home-page-section-four":["12"]}}';
+
+		add_option('_torch_home_widget_area' ,$sections_json);
+	}
 }
 
 add_action( 'after_setup_theme', 'torch_setup' );
@@ -344,6 +348,37 @@ add_action('admin_init','torch_optionscheck_change_santiziation', 100);
 function torch_optionscheck_change_santiziation() {
     remove_filter( 'of_sanitize_textarea', 'of_sanitize_textarea' );
     add_filter( 'of_sanitize_textarea', 'torch_custom_sanitize_textarea' );
+
+    if(isset($_POST['widget-area']) && is_array($_POST['widget-area'])){
+	$meris_list_item = json_encode($_POST['widget-area']);
+	update_option("_torch_home_widget_area",$meris_list_item );
+	}
+
+if ( isset( $_POST['reset'] ) ) {
+	 $output = array();
+ $location = apply_filters( 'options_framework_location', array('admin-options.php') );
+
+	        if ( $optionsfile = locate_template( $location ) ) {
+	            $maybe_options = require_once $optionsfile;
+	            if ( is_array( $maybe_options ) ) {
+					$options = $maybe_options;
+	            } else if ( function_exists( 'optionsframework_options' ) ) {
+					$options = optionsframework_options();
+				}
+	        }
+			
+		if(isset($options)){
+			$config  =  $options;
+			foreach ( (array) $config as $option ) {
+			
+				if(isset($option['id']) && $option['id']=='home_page_sections'){
+					update_option("_torch_home_widget_area",$option['std'] );
+					}
+				}
+			
+		}
+
+		}
 }
 function torch_custom_sanitize_textarea($input) {
     global $allowedposttags;

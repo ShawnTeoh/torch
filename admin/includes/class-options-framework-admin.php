@@ -153,6 +153,8 @@ class Options_Framework_Admin {
 
 		// Enqueue custom option panel JS
 		wp_enqueue_script( 'options-custom', OPTIONS_FRAMEWORK_DIRECTORY . 'js/options-custom.js', array( 'jquery','wp-color-picker' ), Options_Framework::VERSION );
+		wp_enqueue_script( 'options-tooltip', OPTIONS_FRAMEWORK_DIRECTORY . 'js/bootstrap-tooltip.js', array( 'jquery','wp-color-picker' ), Options_Framework::VERSION ,true);
+		wp_enqueue_script( 'options-confirmation', OPTIONS_FRAMEWORK_DIRECTORY . 'js/bootstrap-confirmation.js', array( 'jquery','wp-color-picker' ), Options_Framework::VERSION ,true);
 
 		// Inline scripts from options-interface.php
 		add_action( 'admin_head', array( $this, 'of_admin_head' ) );

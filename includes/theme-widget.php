@@ -96,8 +96,8 @@ function torch_widgets_init() {
 	
 	global $torch_home_sections;
 	
-	$torch_home_sections = '{"section-widget-area-name":["Home Page Section One","Home Page Section Two","Home Page Section Three","Home Page Section Four"],"list-item-color":["","#eee","",""],"list-item-image":["","","",""],"list-item-repeat":["","","",""],"list-item-position":["","","",""],"list-item-attachment":["","","",""],"widget-area-padding":["50","50","50","50"],"widget-area-layout":["boxed","boxed","boxed","boxed"],"widget-area-column":["1","1","2","1"],"widget-area-column-item":{"home-page-section-one":["12"],"home-page-section-two":["12"],"home-page-section-three":["6","6"],"home-page-section-four":["12"]}}';
-
+	$torch_home_sections = get_option('_torch_home_widget_area');
+	if($torch_home_sections !=""){
     $home_sections_array = json_decode($torch_home_sections, true);
     if(isset($home_sections_array['section-widget-area-name']) && is_array($home_sections_array['section-widget-area-name']) ){
 	$num = count($home_sections_array['section-widget-area-name']);
@@ -140,6 +140,7 @@ function torch_widgets_init() {
 		 
 	   }
 	  }
+	}
 	
 
 	register_widget('torch_home_service');
