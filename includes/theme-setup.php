@@ -40,6 +40,12 @@ function torch_setup(){
 
 		add_option('_torch_home_widget_area' ,$sections_json);
 	}
+	if (function_exists('pll_register_string')) {
+		for($i=1;$i<=5;$i++) {
+			pll_register_string('torch_slide_text_'.$i, torch_options_array('torch_slide_text_'.$i), 'torch', true);
+			pll_register_string('torch_slide_btn_text_'.$i, torch_options_array('torch_slide_btn_text_'.$i), 'torch', false);
+		}
+	}
 }
 
 add_action( 'after_setup_theme', 'torch_setup' );

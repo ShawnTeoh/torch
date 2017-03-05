@@ -124,10 +124,15 @@ function torch_native_pagenavi($echo,$wp_query){
 	 for($i=1;$i<=5;$i++){
 	$active = '';
 	// $title = torch_options_array('torch_slide_title_'.$i);
-	 $text     = torch_options_array('torch_slide_text_'.$i);
+	 if (function_exists('pll__')) {
+	 	$text = pll__(torch_options_array('torch_slide_text_'.$i));
+	 	$btn_text = pll__(torch_options_array('torch_slide_btn_text_'.$i));
+	 } else {
+	 	$text = torch_options_array('torch_slide_text_'.$i);
+	 	$btn_text = torch_options_array('torch_slide_btn_text_'.$i);
+	 }
 	 $image    = torch_options_array('torch_slide_image_'.$i);
 	 $link     = torch_options_array('torch_slide_link_'.$i);
-	 $btn_text = torch_options_array('torch_slide_btn_text_'.$i);
 	
 		   
 	 if($i==1) $active     = 'active';
