@@ -30,8 +30,9 @@
 	function torch_clients_tip(){
 	jQuery('.owl-carousel .item img').tooltip('hide');
 	}
-		
-	
+	if (jQuery('.widget_search #searchsubmit').length) {
+		jQuery('.widget_search #searchsubmit').val('');
+	}
  });
  
 /* if(typeof torch_js_var !== 'undefined' && typeof torch_js_var.global_color !== 'undefined'){

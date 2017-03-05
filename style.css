@@ -1561,7 +1561,7 @@ a .entry-title:hover {
 }
 .widget_search input[type="submit"],
 .widget-search input[type="submit"] {
-	background: url(images/search.png);
+	font-family: FontAwesome;
 	float: right;
 	border: none;
 	width: 20px;
@@ -1571,7 +1571,7 @@ a .entry-title:hover {
 	display:none;
 	}
 .widget_search #searchsubmit{
-		text-indent:-99999px;
+		background-color:#fff;
 		}
 .widget-slider {
 	position: relative;
