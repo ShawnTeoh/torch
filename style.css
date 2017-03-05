@@ -65,7 +65,7 @@ button,
 input,
 select,
 textarea {
-	color: #555;
+	color: #212121;
 	font-family: 'Open Sans', sans-serif;
 	font-size: 14px;
 	line-height: 1.6;
@@ -492,7 +492,7 @@ header {
 }
 
 .site-name {
-	margin: 0 0 5px 0;
+	margin: 0 0 10px 0;
 	color: #555;
 	font-size: 30px;
 	font-weight: normal;
@@ -529,8 +529,9 @@ header {
 }
 
 .search-form input[type="submit"] {
-	background: url(images/search.png) center no-repeat;
+	font-family: FontAwesome;
 	background-color: #19cbcf;
+	color: #fff;
 	float: right;
 	border: none;
 	width: 30px;
@@ -680,9 +681,18 @@ header {
 		height: 50px;
 	}
 	.site-name {
-		margin: 0;
+		margin-bottom: 10px;
 		font-size: 24px;
 		font-weight: normal;
+	}
+}
+
+@media screen and (max-width: 403px){
+	.name-box {
+		margin-top: 10px;
+	}
+	.site-logo {
+		float: none;
 	}
 }
 
@@ -717,6 +727,11 @@ section[class^="homepage-section-"] {
 
 .module-description {
 	margin-left: 10px;
+}
+
+.carousel-inner > .item > img,
+.carousel-inner > .item > a > img {
+	width: 100%;
 }
 
 /*

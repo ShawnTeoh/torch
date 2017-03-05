@@ -18,7 +18,7 @@
 		<!--Header-->
 		<header>
 			<div class="container">
-				<div class="logo-box text-left">
+				<div class="logo-box text-center">
 					 <?php if ( torch_options_array('logo')!="") { ?>
         <a href="<?php echo esc_url(home_url('/')); ?>">
         <img src="<?php echo esc_url( torch_options_array('logo') ); ?>" class="site-logo" alt="<?php bloginfo('name'); ?>" />
@@ -42,7 +42,7 @@
 					<div>
 						<label class="sr-only"><?php _e("Search for","torch");?>:</label>
 						<input type="text" name="s" id="s" value="" placeholder="<?php _e("Search","torch");?>...">
-						<input type="submit" value="">
+						<input type="submit" value="&#xf002;">
 					</div>
 				</form>
                
