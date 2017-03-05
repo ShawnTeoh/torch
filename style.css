@@ -732,11 +732,15 @@ section[class^="homepage-section-"] {
 .carousel-inner > .item > img,
 .carousel-inner > .item > a > img {
 	width: 100%;
+	opacity: 0.6;
 }
 
 /*
  * 3.1 Section Slider
  */
+.homepage-slider {
+	background-color: #000;
+}
 
 .homepage-slider .carousel-caption {
 	top: 15%;
@@ -756,7 +760,7 @@ section[class^="homepage-section-"] {
 }
 
 .homepage-slider .carousel-caption .caption-text {
-	background-color: rgba(50,50,50,.2);
+	background-color: rgba(50,50,50,.6);
 	padding: 10px;
 }
 
