@@ -1,7 +1,7 @@
 <div class="homepage-main" role="main">
 <?php echo torch_get_default_slider();?>
 <?php 
-	$torch_home_sections = get_option('_torch_home_widget_area');;
+	global $torch_home_sections;
     if($torch_home_sections !=""){
     $home_sections_array = json_decode($torch_home_sections, true);
      if(isset($home_sections_array['section-widget-area-name']) && is_array($home_sections_array['section-widget-area-name']) ){
