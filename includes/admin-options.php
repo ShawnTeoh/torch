@@ -104,7 +104,13 @@ function optionsframework_options() {
 	    $options[] = array(
 		'name' => __('Footer', 'torch'),
 		'type' => 'heading');
-	
+		
+		$options[] = array(
+		'name' => __('Footer Text', 'torch'),
+		'id' => 'footer_text',
+		'std' => 'Powered by <a href="http://wordpress.org/" target="_blank">WordPress</a>. Designed by <a href="http://www.mageewp.com/" target="_blank">MageeWP Themes</a>.',
+		'type' => 'editor');
+		
         for($i=0;$i<10;$i++){
 			
 	    $options[] = array(

@@ -45,6 +45,7 @@ function torch_setup(){
 			pll_register_string('torch_slide_text_'.$i, torch_options_array('torch_slide_text_'.$i), 'torch', true);
 			pll_register_string('torch_slide_btn_text_'.$i, torch_options_array('torch_slide_btn_text_'.$i), 'torch', false);
 		}
+		pll_register_string('footer_text', torch_options_array('footer_text'), 'torch', true);
 	}
 }
 
