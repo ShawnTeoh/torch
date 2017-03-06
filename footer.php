@@ -12,23 +12,21 @@
 					}
 					?>
 				</div>
-				<div class="container btm">
-					<div class="site-info">
-						<?php
-							if (function_exists('pll_e')) {
-								pll_e(torch_options_array('footer_text'));
-							} else {
-								echo torch_options_array('footer_text');
-							}
-						?>
-					</div>
-					<div class="footer-translate">
-						<?php
-							if (function_exists('pll_the_languages')) {
-								pll_the_languages(array('dropdown' => 1));
-							}
-						?>
-					</div>
+				<div class="site-info">
+					<?php
+						if (function_exists('pll_e')) {
+							pll_e(torch_options_array('footer_text'));
+						} else {
+							echo torch_options_array('footer_text');
+						}
+					?>
+				</div>
+				<div class="footer-translate">
+					<?php
+						if (function_exists('pll_the_languages')) {
+							pll_the_languages(array('dropdown' => 1));
+						}
+					?>
 				</div>
 			</div>
 		</footer>

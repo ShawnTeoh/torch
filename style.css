@@ -694,6 +694,9 @@ header {
 	.site-logo {
 		float: none;
 	}
+	.footer-translate {
+		margin-left: 0;
+	}
 }
 
 /*
@@ -1121,6 +1124,17 @@ footer .container {
 .site-info a:hover {
 	color: #fff;
 	text-decoration: underline;
+}
+
+.footer-translate {
+	float: left;
+	margin-left: 100px;
+}
+
+@media screen and (max-width: 505px){
+	.footer-translate {
+		margin-left: 10px;
+	}
 }
 
 /*
