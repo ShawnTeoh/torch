@@ -742,17 +742,32 @@ section[class^="homepage-section-"] {
 	background-color: #000;
 }
 
+.caption-text h3 {
+	color: #fff;
+	font-weight: normal;
+	font-style: italic;
+	margin-top: 12px;
+}
+
+.caption-text ul {
+	margin: 12px 0 12px;
+	font-size: 20px;
+	font-style: italic;
+}
+
 .homepage-slider .carousel-caption {
 	top: 15%;
 	right: 15%;
 	left: 15%;
 	z-index: 3;
 	text-shadow: none;
+	overflow-y: auto;
 }
 
 .homepage-slider .carousel-caption h1 {
 	color: #fff;
 	margin: 10px 0;
+	font-weight: 900;
 }
 
 .homepage-slider .carousel-caption p {
@@ -845,6 +860,12 @@ section[class^="homepage-section-"] {
 	}
 	.homepage-slider .carousel-caption h1 {
 		font-size: 16px;
+	}
+	.caption-text h3 {
+		font-size: 12px;
+	}
+	.caption-text ul {
+		font-size: 12px;
 	}
 	.homepage-slider .carousel-caption p {
 		display: none;
